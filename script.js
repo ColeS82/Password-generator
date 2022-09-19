@@ -15,36 +15,32 @@
 
 
 
-let generateBtn = document.querySelector("#generate");
+ //===========================================================
+ 
+ 
+   
+
+//------------------------------------------------------------
 
 
+var generateBtn = document.querySelector("#generate");
+var password = generatePassword();
+var passwordText = document.querySelector("#password");
 
-
-function passGen(){
-  let text = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVVWYXZ()!@#$%&*/?+-%".split("");
-  let randomIdnex = Math.floor(Math.random() * text.length);
-
-  return text[randomIdnex];
-
-
+function generatePassword() {
+  const text = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVVWYXZ()!@#$%&*/?+-%'.split('')
+  let res = ''
+  for (let i = 0; i < 20; i++) {
+    res += text[Math.floor(Math.random() * text.length)]
+  }
+  return res;
 }
 
+function writePassword() {
+  passwordText.value = password;
+  passwordText.value;
+  prompt("Do you want lower case letters?")
+  alert("Password Generated!")
+}
 
-let randomPass = passGen();
-console.log(randomPass);
-
-
-// function greetings(){
-//   let x = ["hello", "good", "buddy"];
-//   let randomIndex = Math.floor(Math.random() * x.length);
-// for (let i = 0; i < x.length; i++)
-//  console.log(x[i])
-
-// //return x[randomIndex];
-
-// }
-// let hello = greetings()
-// console.log(hello)
-
-
-
+generateBtn.addEventListener("click", writePassword);
