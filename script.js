@@ -49,8 +49,14 @@
 //-----------------------------------------------------------------------
 
 
-const charArr = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVVWYXZ()!@#$%&*/?+-%'.split('');
+let userCharArr = [];
 let charLength = 8;
+
+let numCharArr = ('0123456789'.split(''));
+let charLower = ('abcdefghijklmnopqrstuvwyxz'.split(''));
+let charUpper = ('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''));
+let charSpecial = ('()!@#$%&*/?+-%'.split(''));
+
 
 // Assignment code
 let generateBtn = document.querySelector("#generate");
@@ -69,16 +75,39 @@ function writePassword() {
 
 //define a function that will generate the password from the user prompts.
 function generatePassword(){
-    for (let i = 0; i <= charLength; i++;)
+    for (let i = 0; i <= charLength; i++);
 
 }
 
 function getPrompts(){
-    charLength = parsint(prompt("How many characters long do you want your new password to be?\nChoose between 8 and 128 characters"))
+    userCharArr = [];
+    userCharArr = userCharArr.concat(numCharArr);
+    charLength = parseInt(prompt("How many characters long do you want your new password to be?\nChoose between 8 and 128 characters"));
 
-    if(charLength > 8 && charLength < 128);{
-    return true;
+
+    if (isNaN(charLength) || charLength < 8 || charLength > 128){
+    alert("Number of characters must be a number 8 - 128\nPlease enter a number between 8-129.");
+        return false;
     }
 
+    if (confirm("Would you like lowercase letters?")){
+        userCharArr = userCharArr.concat(charLower);
+    }
+
+    
+    if (confirm("Would you like uppercase letters?")){
+        userCharArr = userCharArr.concat(charUpper);
+    }
+
+    
+    if (confirm("Would you like special characters?")){
+        userCharArr = userCharArr.concat(charSpecial);
+    }
+
+return true;
 
 }
+
+
+getPrompts()
+console.log(userCharArr)
