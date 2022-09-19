@@ -66,19 +66,30 @@ generateBtn.addEventListener("click", writePassword);
 
 //Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+    let accptPrompts = getPrompts(); //returns True or False
+    var passwordText = document.querySelector("#password");
+    
+    if (accptPrompts) {//If true... then...
+        let password = generatePassword();
+        passwordText.value = password;
+    }
+    else{
+        passwordText -'';
+    }
 }
 
 //define a function that will generate the password from the user prompts.
-function generatePassword(){
-    for (let i = 0; i <= charLength; i++);
 
+function generatePassword() {
+    let passString = '';
+    for (let i = 0; i < charLength; i++) {
+     let randomIndex = [Math.floor(Math.random() * userCharArr.length)];
+     passString = passString + userCharArr[randomIndex];
+    }
+    return passString
 }
-
+    
+//Setting the userCharArr to the concatinated numCharArr ensures numbers are present if user declines all other options.
 function getPrompts(){
     userCharArr = [];
     userCharArr = userCharArr.concat(numCharArr);
@@ -94,12 +105,10 @@ function getPrompts(){
         userCharArr = userCharArr.concat(charLower);
     }
 
-    
     if (confirm("Would you like uppercase letters?")){
         userCharArr = userCharArr.concat(charUpper);
     }
 
-    
     if (confirm("Would you like special characters?")){
         userCharArr = userCharArr.concat(charSpecial);
     }
@@ -107,7 +116,3 @@ function getPrompts(){
 return true;
 
 }
-
-
-getPrompts()
-console.log(userCharArr)
